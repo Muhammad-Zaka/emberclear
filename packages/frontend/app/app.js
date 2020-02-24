@@ -5,6 +5,8 @@ import config from './config/environment';
 
 import defineModifier from 'ember-concurrency-test-waiter/define-modifier';
 
+Ember.run.backburner.DEBUG = true;
+
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
   podModulePrefix = config.podModulePrefix;

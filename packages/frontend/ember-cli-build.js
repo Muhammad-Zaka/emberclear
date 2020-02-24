@@ -39,13 +39,13 @@ module.exports = function(defaults) {
 
   let app = new EmberApp(defaults, {
     hinting: false,
-    minifyJS: { enabled: isProduction },
-    minifyCSS: { enabled: isProduction },
+    // minifyJS: { enabled: isProduction },
+    // minifyCSS: { enabled: isProduction },
 
-    sourcemaps: {
-      enabled: true, // !isProduction,
-      extensions: 'js',
-    },
+    // sourcemaps: {
+    //   enabled: true, // !isProduction,
+    //   extensions: 'js',
+    // },
     fingerprint: {
       // why customHash?
       // so we can reference the hash from an global variable
@@ -61,7 +61,7 @@ module.exports = function(defaults) {
       //
       // The hash is available as an IIFE at /assets/assets-fingerprint.js
       // built by buildStaticTrees(...)
-      customHash: hash,
+      // customHash: hash,
     },
 
     emberData: {
@@ -71,17 +71,20 @@ module.exports = function(defaults) {
     // Why are configs split up this way?
     // To reduce mental load when parsing the build configuration.
     // We don't need to view everything all at once.
-    ...addonConfig(env),
-    ...buildBabelConfig(env),
+    // ...addonConfig(env),
+    // ...buildBabelConfig(env),
     ...postcssConfig,
   });
 
   // Additional paths to copy to the public directory in the final build.
-  let additionalTrees = [...buildStaticTrees(env), ...buildWorkerTrees(env)];
+  let additionalTrees = [
+    ...buildStaticTrees(env),
+    // ...buildWorkerTrees(env)
+];
 
-  if (!isProduction) {
-    app.trees.public = new UnwatchedDir('public');
-  }
+  // if (!isProduction) {
+  //   app.trees.public = new UnwatchedDir('public');
+  // }
 
   if (EMBROIDER) {
     console.info('\n--------------------------');
